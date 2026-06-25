@@ -1,0 +1,33 @@
+name: Sync Keep Images to Aliyun
+
+# 触发条件：允许我们在界面上手动点击运行
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. 登录到你国内的阿里云镜像仓
+      - name: Login to Aliyun Registry
+        run: |
+          docker login jd-ins-cn-north-1.jcr.service.jdcloud.com -u "${{ secrets.ALI_USERNAME }}" -p "${{ secrets.ALI_PASSWORD }}"
+
+      # 2. 从官方源高速拉取（GitHub 海外机房拉这个只需要几秒钟）
+      - name: Pull Official Images
+        run: |
+          docker pull keephq/keep-backend:0.54.1
+          docker pull keephq/keep-frontend:0.54.1
+
+      # 3. 换皮肤：重新打标成你自己的阿里云仓库地址
+      # 请把下面的 "ops-transfer" 换成你在第一步自己建的阿里云命名空间
+      - name: Tag Images
+        run: |
+          docker tag keephq/keep-backend:0.54.1 jd-ins-cn-north-1.jcr.service.jdcloud.com/ins-service-registry/keep-backend:0.54.1
+          docker tag keephq/keep-frontend:0.54.1 jd-ins-cn-north-1.jcr.service.jdcloud.com/ins-service-registry/keep-frontend:0.54.1
+
+      # 4. 推送到国内，完成中转
+      - name: Push to Aliyun
+        run: |
+          docker push jd-ins-cn-north-1.jcr.service.jdcloud.com/ins-service-registry/keep-backend:0.54.1
+          docker pushjd-ins-cn-north-1.jcr.service.jdcloud.com/ins-service-registry/keep-frontend:0.54.1
