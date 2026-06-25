@@ -16,18 +16,18 @@ jobs:
       # 2. 从官方源高速拉取（GitHub 海外机房拉这个只需要几秒钟）
       - name: Pull Official Images
         run: |
-          docker pull us-central1-docker.pkg.dev/keephq/keep-backend:latest
-          docker pull us-central1-docker.pkg.dev/keephq/keep-frontend:latest
+          docker pull us-central1-docker.pkg.dev/keephq/keep/keep-ui
+          docker pull us-central1-docker.pkg.dev/keephq/keep/keep-api
 
       # 3. 换皮肤：重新打标成你自己的阿里云仓库地址
       # 请把下面的 "ops-transfer" 换成你在第一步自己建的阿里云命名空间
       - name: Tag Images
         run: |
-          docker tag us-central1-docker.pkg.dev/keephq/keep-backend:latest jd-ins-cn-north-1.jcr.service.jdcloud.com/ins-service-registry/keep-backend:latest
-          docker tag us-central1-docker.pkg.dev/keephq/keep-frontend:latest jd-ins-cn-north-1.jcr.service.jdcloud.com/ins-service-registry/keep-frontend:latest
+          docker tag us-central1-docker.pkg.dev/keephq/keep/keep-ui:latest jd-ins-cn-north-1.jcr.service.jdcloud.com/ins-service-registrykeep-ui:latest
+          docker tag us-central1-docker.pkg.dev/keephq/keep/keep-api:latest jd-ins-cn-north-1.jcr.service.jdcloud.com/ins-service-registry/keep-api:latest
 
       # 4. 推送到国内，完成中转
       - name: Push to Aliyun
         run: |
-          docker push jd-ins-cn-north-1.jcr.service.jdcloud.com/ins-service-registry/keep-backend:latest
-          docker push jd-ins-cn-north-1.jcr.service.jdcloud.com/ins-service-registry/keep-frontend:latest
+          docker push jd-ins-cn-north-1.jcr.service.jdcloud.com/ins-service-registry/keep-ui:latest
+          docker push jd-ins-cn-north-1.jcr.service.jdcloud.com/ins-service-registry/keep-api:latest
