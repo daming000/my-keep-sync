@@ -23,7 +23,7 @@ jobs:
       # 请把下面的 "ops-transfer" 换成你在第一步自己建的阿里云命名空间
       - name: Tag Images
         run: |
-          docker tag us-central1-docker.pkg.dev/keephq/keep/keep-ui:0.54.1 jd-ins-cn-north-1.jcr.service.jdcloud.com/ins-service-registrykeep-ui:0.54.1
+          docker tag us-central1-docker.pkg.dev/keephq/keep/keep-ui:0.54.1 jd-ins-cn-north-1.jcr.service.jdcloud.com/ins-service-registry/keep-ui:0.54.1
           docker tag us-central1-docker.pkg.dev/keephq/keep/keep-api:0.54.1 jd-ins-cn-north-1.jcr.service.jdcloud.com/ins-service-registry/keep-api:0.54.1
 
       # 4. 推送到国内，完成中转
