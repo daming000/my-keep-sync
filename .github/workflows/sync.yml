@@ -11,7 +11,7 @@ jobs:
       # 1. 登录到你国内的阿里云镜像仓
       - name: Login to Aliyun Registry
         run: |
-          docker login jd-ins-cn-north-1.jcr.service.jdcloud.com -u "${{ secrets.ALI_USERNAME }}" -p "${{ secrets.ALI_PASSWORD }}"
+          docker login jd-ins-cn-north-1.jcr.service.jdcloud.com -u jdcloud -p G9mYIGOrwNwHaMQB
 
       # 2. 从官方源高速拉取（GitHub 海外机房拉这个只需要几秒钟）
       - name: Pull Official Images
