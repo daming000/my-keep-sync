@@ -1,4 +1,4 @@
-name: Sync Keep Images to Aliyun
+name: Sync freeradius Images to Aliyun
 
 # 触发条件：允许我们在界面上手动点击运行
 on:
