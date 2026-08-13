@@ -11,13 +11,14 @@ jobs:
       # 1. 登录到你国内的阿里云镜像仓
       - name: Login to Aliyun Registry
         run: |
-          docker login jd-ins-cn-north-1.jcr.service.jdcloud.com -u jdcloud -p G9mYIGOrwNwHaMQB
+          docker login -u jdcloud -p jqF8kCkytE7Z6DLl jd-ins-cn-north-1.jcr.service.jdcloud.com
 
       # 2. 从官方源高速拉取（GitHub 海外机房拉这个只需要几秒钟）
       - name: Pull Official Images
         run: |
           docker pull us-central1-docker.pkg.dev/keephq/keep/keep-ui:0.54.2
           docker pull us-central1-docker.pkg.dev/keephq/keep/keep-api:0.54.2
+          docker tag us-central1-docker.pkg.dev/keephq/keep/keep-worker:0.54.2
           docker pull us-central1-docker.pkg.dev/keephq/keep/keep-arq-dashboard:latest
 
       # 3. 换皮肤：重新打标成你自己的阿里云仓库地址
@@ -26,6 +27,7 @@ jobs:
         run: |
           docker tag us-central1-docker.pkg.dev/keephq/keep/keep-ui:0.54.2 jd-ins-cn-north-1.jcr.service.jdcloud.com/ins-service-registry/keep-ui:0.54.2
           docker tag us-central1-docker.pkg.dev/keephq/keep/keep-api:0.54.2 jd-ins-cn-north-1.jcr.service.jdcloud.com/ins-service-registry/keep-api:0.54.2
+          docker tag us-central1-docker.pkg.dev/keephq/keep/keep-worker:0.54.2 jd-ins-cn-north-1.jcr.service.jdcloud.com/ins-service-registry/keep-worker:0.54.2
           docker tag us-central1-docker.pkg.dev/keephq/keep/keep-arq-dashboard:latest jd-ins-cn-north-1.jcr.service.jdcloud.com/ins-service-registry/keep-arq-dashboard:latest
 
       # 4. 推送到国内，完成中转
@@ -33,4 +35,5 @@ jobs:
         run: |
           docker push jd-ins-cn-north-1.jcr.service.jdcloud.com/ins-service-registry/keep-ui:0.54.2
           docker push jd-ins-cn-north-1.jcr.service.jdcloud.com/ins-service-registry/keep-api:0.54.2
+          docker push jd-ins-cn-north-1.jcr.service.jdcloud.com/ins-service-registry/keep-worker:0.54.2
           docker push jd-ins-cn-north-1.jcr.service.jdcloud.com/ins-service-registry/keep-arq-dashboard:latest
