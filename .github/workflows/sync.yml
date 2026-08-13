@@ -18,7 +18,7 @@ jobs:
         run: |
           docker pull us-central1-docker.pkg.dev/keephq/keep/keep-ui:0.54.2
           docker pull us-central1-docker.pkg.dev/keephq/keep/keep-api:0.54.2
-          docker tag us-central1-docker.pkg.dev/keephq/keep/keep-worker:0.54.2
+          docker pull us-central1-docker.pkg.dev/keephq/keep/keep-worker:0.54.2
           docker pull us-central1-docker.pkg.dev/keephq/keep/keep-arq-dashboard:latest
 
       # 3. 换皮肤：重新打标成你自己的阿里云仓库地址
