@@ -18,7 +18,7 @@ jobs:
         run: |
           docker pull us-central1-docker.pkg.dev/keephq/keep/keep-ui:0.54.2
           docker pull us-central1-docker.pkg.dev/keephq/keep/keep-api:0.54.2
-          docker pull us-central1-docker.pkg.dev/keephq/keep/keep-worker:0.54.2
+          docker pull us-central1-docker.pkg.dev/keephq/keep/keep-worker:v0.54.2
           docker pull us-central1-docker.pkg.dev/keephq/keep/keep-arq-dashboard:latest
 
       # 3. 换皮肤：重新打标成你自己的阿里云仓库地址
@@ -27,7 +27,7 @@ jobs:
         run: |
           docker tag us-central1-docker.pkg.dev/keephq/keep/keep-ui:0.54.2 jd-ins-cn-north-1.jcr.service.jdcloud.com/ins-service-registry/keep-ui:0.54.2
           docker tag us-central1-docker.pkg.dev/keephq/keep/keep-api:0.54.2 jd-ins-cn-north-1.jcr.service.jdcloud.com/ins-service-registry/keep-api:0.54.2
-          docker tag us-central1-docker.pkg.dev/keephq/keep/keep-worker:0.54.2 jd-ins-cn-north-1.jcr.service.jdcloud.com/ins-service-registry/keep-worker:0.54.2
+          docker tag us-central1-docker.pkg.dev/keephq/keep/keep-worker:v0.54.2 jd-ins-cn-north-1.jcr.service.jdcloud.com/ins-service-registry/keep-worker:v0.54.2
           docker tag us-central1-docker.pkg.dev/keephq/keep/keep-arq-dashboard:latest jd-ins-cn-north-1.jcr.service.jdcloud.com/ins-service-registry/keep-arq-dashboard:latest
 
       # 4. 推送到国内，完成中转
@@ -35,5 +35,5 @@ jobs:
         run: |
           docker push jd-ins-cn-north-1.jcr.service.jdcloud.com/ins-service-registry/keep-ui:0.54.2
           docker push jd-ins-cn-north-1.jcr.service.jdcloud.com/ins-service-registry/keep-api:0.54.2
-          docker push jd-ins-cn-north-1.jcr.service.jdcloud.com/ins-service-registry/keep-worker:0.54.2
+          docker push jd-ins-cn-north-1.jcr.service.jdcloud.com/ins-service-registry/keep-worker:v0.54.2
           docker push jd-ins-cn-north-1.jcr.service.jdcloud.com/ins-service-registry/keep-arq-dashboard:latest
