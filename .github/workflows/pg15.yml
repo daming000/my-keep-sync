@@ -1,4 +1,4 @@
-name: Sync Keep Images to pg15
+name: Sync pg Images to pg15
 
 # 触发条件：允许我们在界面上手动点击运行
 on:
