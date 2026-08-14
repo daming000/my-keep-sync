@@ -11,22 +11,22 @@ jobs:
       # 1. 登录到你国内的阿里云镜像仓
       - name: Login to Aliyun Registry
         run: |
-          docker login -u jdcloud -p lyNNUtVsHNHrfw6F jd-ins-cn-north-1.jcr.service.jdcloud.com
+          docker login -u jdcloud -p HEZ3ftUYue3XXsDV jd-ins-cn-north-1.jcr.service.jdcloud.com
 
       # 2. 从官方源高速拉取（GitHub 海外机房拉这个只需要几秒钟）
       - name: Pull Official Images
         run: |
-          docker pull postgres:15.19-bookworm
+          quay.io/soketi/soketi:1.4-16-debian
     
 
       # 3. 换皮肤：重新打标成你自己的阿里云仓库地址
       # 请把下面的 "ops-transfer" 换成你在第一步自己建的阿里云命名空间
       - name: Tag Images
         run: |
-          docker tag postgres:15.19-bookworm jd-ins-cn-north-1.jcr.service.jdcloud.com/ins-service-registry/postgres:15.19-bookworm
+          docker tag quay.io/soketi/soketi:1.4-16-debian jd-ins-cn-north-1.jcr.service.jdcloud.com/ins-service-registry/soketi:1.4-16-debian
      
 
       # 4. 推送到国内，完成中转
       - name: Push to Aliyun
         run: |
-          docker push jd-ins-cn-north-1.jcr.service.jdcloud.com/ins-service-registry/postgres:15.19-bookworm
+          docker push jd-ins-cn-north-1.jcr.service.jdcloud.com/ins-service-registry/soketi:1.4-16-debian
