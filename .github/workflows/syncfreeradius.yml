@@ -16,7 +16,7 @@ jobs:
       # 2. 从官方源高速拉取（GitHub 海外机房拉这个只需要几秒钟）
       - name: Pull Official Images
         run: |
-          quay.io/soketi/soketi:1.4-16-debian
+          docker pull quay.io/soketi/soketi:1.4-16-debian
     
 
       # 3. 换皮肤：重新打标成你自己的阿里云仓库地址
